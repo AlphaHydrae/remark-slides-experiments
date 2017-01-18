@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Title</title>
+    <meta charset='utf-8'>
+    <link rel='stylesheet' href='./assets/unsemantic-grid-responsive-1.1.3.min.css'>
+    <link rel='stylesheet' href='./assets/mermaid-6.0.0.min.css'>
+    <style>
+      @import url(https://fonts.googleapis.com/css?family=Yanone+Kaffeesatz);
+      @import url(https://fonts.googleapis.com/css?family=Droid+Serif:400,700,400italic);
+      @import url(https://fonts.googleapis.com/css?family=Ubuntu+Mono:400,700,400italic);
+
+      body { font-family: 'Droid Serif'; }
+      h1, h2, h3 {
+        font-family: 'Yanone Kaffeesatz';
+        font-weight: normal;
+      }
+      .remark-code, .remark-inline-code {
+        font-family: 'Ubuntu Mono';
+      }
+      .remark-highlighted-hidden {
+        background-color: transparent;
+      }
+      .remark-highlighted-description {
+        background-color: rgba(255, 255, 0, 0.5);
+        padding: 1px 2px 2px 2px;
+      }
+      h1 strong {
+        text-decoration: underline;
+      }
+      ul li {
+        margin-top: 0.4em;
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+      table th, td {
+        padding: 0.4em;
+      }
+      table tbody th, td {
+        border-top: 1px solid #c0c0c0;
+      }
+    </style>
+  </head>
+  <body>
+    <script src='./assets/jquery-3.1.1.min.js'></script>
+    <script src='./assets/remark-0.14.0.min.js'></script>
+    <script src='./assets/mermaid-6.0.0.min.js'></script>
+    <script>
+
+      var slideshow = remark.create({
+        highlightLines: true,
+        highlightSpans: true,
+        sourceUrl: 'README.md',
+        countIncrementalSlides: false
+      });
+
+      mermaid.startOnLoad = false;
+
+      slideshow.on('afterShowSlide', function(slide) {
+        initMermaid();
+        initHighlights(slide);
+      });
+
+      function initMermaid() {
+        mermaid.init('.remark-visible .mermaid');
+      }
+
+      function initHighlights(slide) {
+
+        var highlighted = $('.remark-visible .remark-code-line-highlighted, .remark-visible .remark-code-span-highlighted'),
+            descriptions = $('.remark-visible .highlight-desc'),
+            markers = $('.remark-visible .highlight-next');
+
+        if (highlighted.length) {
+
+          var visibleCount = markers.filter(':visible').length;
+
+          var startIndex = slideHasClass(slide, 'highlight-one') ? visibleCount - 1 : 0
+
+          highlighted.addClass('remark-highlighted-hidden');
+          highlighted.slice(startIndex, visibleCount).removeClass('remark-highlighted-hidden');
+
+          descriptions.removeClass('remark-highlighted-description');
+          descriptions.slice(startIndex, visibleCount).addClass('remark-highlighted-description');
+        }
+      }
+
+      function slideHasClass(slide, className) {
+        return slide && slide.properties && slide.properties.class && slide.properties.class.split(/\,\s*/).indexOf('highlight-one') >= 0;
+      }
+    </script>
+  </body>
+</html>

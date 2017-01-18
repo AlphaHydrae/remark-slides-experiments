@@ -1,0 +1,24 @@
+{
+  "name": "remark-slides-experiments",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Experiments with remark, an in-browser, Markdown-driven slideshow tool",
+  "dependencies": {
+    "gulp": "^3.9.1",
+    "gulp-connect": "^5.0.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "start": "gulp"
+  },
+  "author": "Simon Oulevay (Alpha Hydrae) <npm@alphahydrae.com>",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlphaHydrae/remark-slides-experiments.git"
+  },
+  "bugs": {
+    "url": "https://github.com/AlphaHydrae/remark-slides-experiments/issues"
+  },
+  "homepage": "https://github.com/AlphaHydrae/remark-slides-experiments#readme"
+}
